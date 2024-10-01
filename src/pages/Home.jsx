@@ -1,0 +1,162 @@
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import FAQ from '../components/Faq';
+import Modal from '../components/Modal'; // Importando o componente Modal
+
+export default function Home() {
+  // Estado para controlar a exibição do modal
+  const [showModal, setShowModal] = useState(false);
+
+  // Função para abrir o modal
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  // Função para fechar o modal
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  return (
+    <main className="bg-black text-white">
+      {/* Hero Section */}
+      <section className="font-unbounded hero flex flex-col items-center justify-center text-center py-12 bg-gradient-to-b from-black via-black to-red-600 min-h-screen relative overflow-hidden">
+        <div className="content relative z-10 max-w-2xl mt-[-200px] sm:mt-0 px-4 sm:px-6 lg:px-8">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl mb-5 font-unbounded">Tem sempre um <br />Prêmio para você</h1>
+          <p className="mb-6 text-base sm:text-lg lg:text-xl font-montserrat">Diversos prêmios à sua disposição</p>
+          <a href="#" className="button bg-red-600 text-white py-3 px-6 rounded-full text-sm font-light inline-flex items-center">
+            COMEÇAR AGORA
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" className="ml-2">
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+            </svg>
+          </a>
+        </div>
+        <img src="carro site.png" alt="Carro de Corrida" className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-xl sm:max-w-2xl md:max-w-3xl z-0" />
+      </section>
+
+      {/* Jogos Section */}
+      <section className="jogos text-center py-5" id="jogos">
+        <div className="title-container1 flex items-center justify-center mb-5 px-4 sm:px-6 lg:px-36">
+          <h1 className="font-unbounded text-2xl sm:text-3xl font-light">Jogos</h1>
+        </div>
+        <div className="font-poppins cards-container flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 px-4">
+          
+
+           {/* Card Quiz */}
+           <div className="card bg-customGray rounded-lg p-4 sm:p-5 text-left flex flex-col justify-between max-w-xs sm:max-w-sm">
+            <div className="icon bg-black rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mb-4 sm:mb-5">
+              <img src="quiz logo site.svg" alt="Quiz Logo" className="h-8 sm:h-9" />
+            </div>
+            <h2 className="text-lg sm:text-xl font-light font-unbounded mb-2">Quiz</h2>
+            <p className="text-xs sm:text-sm font-poppins">Desafie seus conhecimentos sobre Fórmula 1 neste quiz emocionante! Responda perguntas rápidas e acumule pontos para se tornar um verdadeiro especialista.</p>
+            <a href="#" className="learn-more text-red-600 mt-3 text-xs sm:text-sm font-unbounded">Saiba mais!</a>
+          </div>
+          
+          {/* Card Double */}
+          <div className="card bg-customGray rounded-lg p-4 sm:p-5 text-left flex flex-col justify-between max-w-xs sm:max-w-sm">
+            <div className="icon bg-black rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mb-4 sm:mb-5">
+              <span className="text-red-600 text-xl sm:text-2xl">R</span>
+            </div>
+            <h2 className="text-lg sm:text-xl font-unbounded mb-2">Double</h2>
+            <p className="font-poppins text-xs sm:text-sm">O Double oferece pontos ao escolher a cor certa: Preto e Vermelho pagam 2x, enquanto Branco paga 5x. A roleta gira, escolha sua cor e boa sorte!</p>
+            <button onClick={openModal} className="learn-more text-red-600 mt-3 text-xs sm:text-sm font-unbounded">
+              Saiba mais!
+            </button>
+            <NavLink to="/Double" className="text-red-600 mt-3 text-xs sm:text-sm font-unbounded text-center ">Jogar Double</NavLink>
+          </div>
+
+         
+
+          {/* Card Bet */}
+          <div className="card bg-customGray rounded-lg p-4 sm:p-5 text-left flex flex-col justify-between max-w-xs sm:max-w-sm">
+            <div className="icon bg-black rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mb-4 sm:mb-5">
+              <img src="bet logo site.svg" alt="Bet Logo" className="h-8 sm:h-9" />
+            </div>
+            <h2 className="text-lg sm:text-xl font-light font-unbounded mb-2">Bet</h2>
+            <p className="text-xs sm:text-sm font-poppins">Escolha o piloto vencedor da próxima corrida de Fórmula E e ganhe pontos para se destacar no ranking!</p>
+            <a href="#" className="learn-more text-red-600 mt-3 text-xs sm:text-sm font-unbounded">Saiba mais!</a>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Section para Player de Vídeo */}
+      <section className="video-section text-center py-5" id="live-stream">
+        <div className="title-container flex items-center justify-center mb-5 px-4 sm:px-6 lg:px-36">
+          <h1 className="font-unbounded text-2xl sm:text-3xl font-light">Live de Fórmula E</h1>
+        </div>
+        <div className="video-container flex justify-center px-4">
+          <iframe 
+            width="100%" 
+            height="315" 
+            src="https://www.youtube.com/embed/cmj3xa_rQC8" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      </section>
+
+      {/* Loja Section */}
+      <section className="loja text-center py-5" id="loja">
+        <div className="title-container mb-5 flex flex-col justify-center items-center px-4 sm:px-6 lg:px-36">
+          <h1 className="text-2xl sm:text-4xl font-unbounded mb-4">Loja</h1>
+          <NavLink to='/loja' className="ver-todos bg-red-600 text-white py-3 px-6 rounded-full text-sm font-light inline-flex items-center mb-6">
+            VER TODA A LOJA
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" className="ml-2">
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+            </svg>
+          </NavLink>
+        </div>
+
+        <div className="products-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center px-4">
+          {/* Produto Camiseta */}
+          <div className="product bg-neutral-950 rounded-lg p-4 sm:p-12 text-center flex flex-col justify-between max-w-xs sm:max-w-sm">
+            <img src="Camiseta Loja C.png" alt="Camiseta" className="mb-5 rounded-lg w-full h-48 sm:h-64 object-cover" />
+            <div className="product-info text-left">
+              <span className="category bg-red-600 text-white px-3 py-1 rounded-full text-xs sm:text-sm">Loja</span>
+              <h2 className="text-lg sm:text-2xl font-light font-unbounded mt-2">Camiseta</h2>
+              <p className="text-xs sm:text-sm font-poppins">Camiseta, Formula E 2024</p>
+            </div>
+          </div>
+
+          {/* Produto PS5 */}
+          <div className="product bg-neutral-950 rounded-lg p-4 sm:p-12 text-center flex flex-col justify-between max-w-xs sm:max-w-sm">
+            <img src="Ps5 Loja C.png" alt="PS5" className="mb-5 rounded-lg w-full h-48 sm:h-64 object-cover" />
+            <div className="product-info text-left">
+              <span className="category bg-red-600 text-white px-3 py-1 rounded-full text-xs sm:text-sm">Loja</span>
+              <h2 className="text-lg sm:text-2xl font-light font-unbounded mt-2">PS5</h2>
+              <p className="text-xs sm:text-sm font-poppins">Console Sony Playstation 5, PS5 825gb</p>
+            </div>
+          </div>
+
+          {/* Produto Ingresso */}
+          <div className="product bg-neutral-950 rounded-lg p-4 sm:p-12 text-center flex flex-col justify-between max-w-xs sm:max-w-sm">
+            <img src="Ingresso Loja C.png" alt="Ingresso Formula E" className="mb-5 rounded-lg w-full h-48 sm:h-64 object-cover" />
+            <div className="product-info text-left">
+              <span className="category bg-red-600 text-white px-3 py-1 rounded-full text-xs sm:text-sm">Loja</span>
+              <h2 className="text-lg sm:text-2xl font-light font-unbounded mt-2">Ingresso Formula E</h2>
+              <p className="text-xs sm:text-sm font-poppins">Ingresso para Formula E, Corrida 2024</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <FAQ />
+      <br />
+
+      {/* Modal Component */}
+      <Modal 
+        show={showModal} 
+        closeModal={closeModal} 
+        title="Como funciona o Double" 
+        content="O Double é um jogo simples onde você escolhe entre três opções: Preto, Vermelho ou Branco. 
+        Se você acertar a cor escolhida, recebe pontos. As opções de Preto e Vermelho pagam 2x o valor 
+        apostado, enquanto a opção Branco paga 5x."
+      />
+    </main>
+  );
+}

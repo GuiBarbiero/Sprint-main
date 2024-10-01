@@ -1,0 +1,138 @@
+/* Contêiner principal da roleta com gradiente de fundo */
+.double-horizontal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #000000, #660000); /* Gradiente de preto para vermelho */
+  color: #f4f4f4; /* Texto branco */
+  font-family: 'Arial', sans-serif;
+}
+
+/* Estilo para o título */
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #ffffff; /* Texto branco */
+}
+
+/* Botões de seleção */
+.escolha-jogador {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.botao-escolha {
+  padding: 10px 30px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.botao-escolha:hover {
+  transform: scale(1.05);
+}
+
+.vermelho {
+  background-color: #ff4d4d;
+}
+
+.preto {
+  background-color: #333333;
+}
+
+.branco {
+  background-color: #f5f5f5;
+  color: #333333;
+}
+
+.selecionado {
+  border: 2px solid yellow;
+}
+
+/* Botão de girar a roleta */
+.botao-girar {
+  padding: 12px 30px;
+  font-size: 1.3rem;
+  margin-top: 20px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.botao-girar:hover {
+  background-color: #ff1a1a;
+}
+
+/* Contêiner dos quadrados da roleta */
+.quadrados-cores {
+  position: relative;
+  width: 600px;
+  height: 150px;
+  overflow: hidden;
+  margin-top: 30px;
+  border: 3px solid #ccc;
+  border-radius: 10px; /* Arredondando bordas do contêiner */
+  background-color: #333333; /* Cor de fundo por trás dos quadrados */
+}
+
+.container-animacao {
+  display: flex;
+  transition: transform 5s ease-out;
+}
+
+.quadrado {
+  width: 200px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.7rem;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-right: 2px solid #333; /* Separação entre os quadrados */
+}
+
+.branco {
+  background-color: white;
+  color: black;
+}
+
+.preto {
+  background-color: black;
+}
+
+.vermelho {
+  background-color: red;
+}
+
+/* Linha central que indica o resultado */
+.linha-central {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  background-color: yellow;
+  z-index: 10;
+}
+
+/* Estilo para o texto do resultado */
+h2 {
+  font-size: 1.8rem;
+  margin-top: 20px;
+  color: #ffd700; /* Texto em amarelo dourado */
+}
