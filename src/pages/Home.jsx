@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; 
 import { NavLink } from 'react-router-dom';
 import FAQ from '../components/Faq';
 import Modal from '../components/Modal'; // Importando o componente Modal
@@ -6,6 +6,10 @@ import Modal from '../components/Modal'; // Importando o componente Modal
 export default function Home() {
   // Estado para controlar a exibição do modal
   const [showModal, setShowModal] = useState(false);
+  
+  // Estado para monitorar se o usuário está assistindo à live
+  const [assistindoLive, setAssistindoLive] = useState(false);
+  const [tempoAssistido, setTempoAssistido] = useState(0);
 
   // Função para abrir o modal
   const openModal = () => {
@@ -16,6 +20,16 @@ export default function Home() {
   const closeModal = () => {
     setShowModal(false);
   };
+
+  // Função para simular que o usuário está assistindo à live
+  const handleLivePlay = () => {
+    setAssistindoLive(true);
+  };
+
+  const handleLivePause = () => {
+    setAssistindoLive(false);
+  };
+
 
   return (
     <main className="bg-black text-white">
@@ -42,9 +56,8 @@ export default function Home() {
         </div>
         <div className="font-poppins cards-container flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 px-4">
           
-
-           {/* Card Quiz */}
-           <div className="card bg-customGray rounded-lg p-4 sm:p-5 text-left flex flex-col justify-between max-w-xs sm:max-w-sm">
+          {/* Card Quiz */}
+          <div className="card bg-customGray rounded-lg p-4 sm:p-5 text-left flex flex-col justify-between max-w-xs sm:max-w-sm">
             <div className="icon bg-black rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mb-4 sm:mb-5">
               <img src="quiz logo site.svg" alt="Quiz Logo" className="h-8 sm:h-9" />
             </div>
@@ -66,8 +79,6 @@ export default function Home() {
             <NavLink to="/Double" className="text-red-600 mt-3 text-xs sm:text-sm font-unbounded text-center ">Jogar Double</NavLink>
           </div>
 
-         
-
           {/* Card Bet */}
           <div className="card bg-customGray rounded-lg p-4 sm:p-5 text-left flex flex-col justify-between max-w-xs sm:max-w-sm">
             <div className="icon bg-black rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mb-4 sm:mb-5">
@@ -87,15 +98,19 @@ export default function Home() {
           <h1 className="font-unbounded text-2xl sm:text-3xl font-light">Live de Fórmula E</h1>
         </div>
         <div className="video-container flex justify-center px-4">
-          <iframe 
-            width="100%" 
-            height="315" 
-            src="https://www.youtube.com/embed/cmj3xa_rQC8" 
-            title="YouTube video player" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-          </iframe>
+          <div className="w-full max-w-7xl h-[calc(100vh-300px)]"> {/* Ajuste a largura e altura aqui */}
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/cmj3xa_rQC8"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              onPlay={handleLivePlay}
+              onPause={handleLivePause}
+            ></iframe>
+          </div>
         </div>
       </section>
 
@@ -146,17 +161,7 @@ export default function Home() {
       </section>
 
       <FAQ />
-      <br />
-
-      {/* Modal Component */}
-      <Modal 
-        show={showModal} 
-        closeModal={closeModal} 
-        title="Como funciona o Double" 
-        content="O Double é um jogo simples onde você escolhe entre três opções: Preto, Vermelho ou Branco. 
-        Se você acertar a cor escolhida, recebe pontos. As opções de Preto e Vermelho pagam 2x o valor 
-        apostado, enquanto a opção Branco paga 5x."
-      />
+      <Modal show={showModal} handleClose={closeModal} />
     </main>
   );
 }

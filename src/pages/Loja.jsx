@@ -7,13 +7,14 @@ import boneLoja from '../assets/Bone Loja C.png';
 import ps5Loja from '../assets/Ps5 Loja C.png';
 import caderno01 from '../assets/caderno01.png';
 import moedaIcon from '../assets/moeda-loja.png';
-import chaveiroLoja from '../assets/chaveiro-sprint-removebg-preview.png'
-import copoLoja from '../assets/copo-sprint-removebg-preview.png'
-import garrafaLoja from '../assets/garrafa-sprint-removebg-preview.png'
-import '../barra-de-navegacao.css'
+import chaveiroLoja from '../assets/chaveiro-sprint-removebg-preview.png';
+import copoLoja from '../assets/copo-sprint-removebg-preview.png';
+import garrafaLoja from '../assets/garrafa-sprint-removebg-preview.png';
+import '../barra-de-navegacao.css';
 
 export default function Home() {
   const [saldo, setSaldo] = useState(1000);
+  const [isModalOpen, setIsModalOpen] = useState(false); // Controle do modal
 
   const produtos = [
     { id: 1, nome: 'Camiseta', preco: 1000, img: camisetaLoja },
@@ -28,29 +29,61 @@ export default function Home() {
 
   const adquirirItem = (preco) => {
     if (saldo >= preco) {
-      setSaldo(saldo - preco); 
+      setSaldo(saldo - preco);
       alert('Item adquirido com sucesso!');
     } else {
       alert('Saldo insuficiente!');
     }
   };
 
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen); // Alterna a visibilidade do modal
+  };
+
   return (
     <div className="max-w-screen-xl mx-auto p-4">
       {/* Alinhando corretamente o saldo */}
-      <div className="flex justify-end">
+      <div className="flex justify-end items-center mb-4">
         <div className="bg-[#202020] border border-gray-600 rounded-full text-center px-4 py-2 flex items-center">
           <img src={moedaIcon} className="w-8 h-8 mr-2" alt="Turbo Coins" />
-          <p className="text-white font-semibold">R${saldo}</p>
+          <p className="text-white font-semibold">TC {saldo}</p>
         </div>
+
+        {/* Botão de informação */}
+        <button
+          onClick={toggleModal}
+          className="ml-2 bg-[#202020] border border-gray-600 text-white p-2 rounded-full flex items-center justify-center w-10 h-10 hover:bg-neutral-600 transition"
+        >
+          i
+        </button>
       </div>
 
+      {/* Modal estilo popup */}
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white rounded-lg p-8 shadow-lg max-w-md w-full mx-4">
+            <h2 className="text-xl font-bold mb-4 text-center text-black">TC = Turbo Coins</h2> {/* Ajuste da cor aqui */}
+            <p className="text-gray-700 mb-6 text-center">
+              O TC é a moeda virtual do site, permitindo que usuários acumulem e troquem por produtos da loja virtual, como camisetas, bonés e até eletrônicos de alto valor.
+            </p>
+            <div className="text-center">
+              <button
+                onClick={toggleModal}
+                className="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition"
+              >
+                Fechar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Grid de produtos */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
         {produtos.map((produto) => (
           <div
             key={produto.id}
-            className="bg-neutral-900 border border-neutral-700 rounded-lg p-6 text-center shadow-lg"
+            className="bg-neutral-900 border border-neutral-700 rounded-lg p-6 text-center shadow-lg flex flex-col justify-between"
           >
             {produto.img ? (
               <img
@@ -61,11 +94,13 @@ export default function Home() {
             ) : (
               <div className="w-full h-40 bg-gray-600 mb-4 rounded-md"></div>
             )}
-            <h3 className="text-white font-bold text-lg mb-2">{produto.nome}</h3>
-            <p className="text-gray-400 text-sm mb-4">R${produto.preco}</p>
+            <div className="flex-grow">
+              <h3 className="text-white font-bold text-lg mb-2">{produto.nome}</h3>
+              <p className="text-gray-400 text-sm mb-4">TC {produto.preco}</p>
+            </div>
             <button
               onClick={() => adquirirItem(produto.preco)}
-              className="bg-neutral-700 text-white py-2 px-4 rounded-full hover:bg-red-600 transition"
+              className="bg-neutral-700 text-white py-2 px-4 rounded-full hover:bg-red-600 transition mt-auto"
             >
               ADQUIRIR
             </button>
