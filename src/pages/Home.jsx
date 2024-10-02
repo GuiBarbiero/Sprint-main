@@ -19,21 +19,23 @@ export default function Home() {
 
   return (
     <main className="bg-black text-white">
-      {/* Hero Section */}
-      <section className="font-unbounded hero flex flex-col items-center justify-center text-center py-12 bg-gradient-to-b from-black via-black to-red-600 min-h-screen relative overflow-hidden">
-        <div className="content relative z-10 max-w-2xl mt-[-200px] sm:mt-0 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl mb-5 font-unbounded">Tem sempre um <br />Prêmio para você</h1>
-          <p className="mb-6 text-base sm:text-lg lg:text-xl font-montserrat">Diversos prêmios à sua disposição</p>
-          <a href="#" className="button bg-red-600 text-white py-3 px-6 rounded-full text-sm font-light inline-flex items-center">
-            COMEÇAR AGORA
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" className="ml-2">
-              <path d="M0 0h24v24H0z" fill="none" />
-              <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
-            </svg>
-          </a>
-        </div>
-        <img src="carro site.png" alt="Carro de Corrida" className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-xl sm:max-w-2xl md:max-w-3xl z-0" />
-      </section>
+    <section className="font-unbounded hero flex flex-col items-center justify-center text-center py-6 bg-gradient-to-b from-black via-black to-red-600 min-h-screen relative overflow-hidden">
+      <div className="content relative z-10 max-w-4xl mt-[-150px] sm:mt-0 px-4 sm:px-6 lg:px-8">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl mb-5 font-unbounded">Tem sempre um <br />Prêmio para você</h1>
+        <p className="mb-6 text-base sm:text-lg lg:text-xl font-montserrat">Diversos prêmios à sua disposição</p>
+      </div>
+      {/* Imagem e botão dentro de um contêiner flex para alinhamento vertical */}
+      <div className="flex flex-col items-center mt-8">
+        <img src="carro site.png" alt="Carro de Corrida" className="w-full max-w-3xl sm:max-w-2xl" />
+        <a href="#" className="button bg-red-600 text-white py-3 px-6 rounded-full text-sm font-light inline-flex items-center mt-6">
+          COMEÇAR AGORA
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" className="ml-2">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+          </svg>
+        </a>
+      </div>
+    </section>
 
       {/* Jogos Section */}
       <section className="jogos text-center py-5" id="jogos">
@@ -92,7 +94,6 @@ export default function Home() {
             height="315" 
             src="https://www.youtube.com/embed/cmj3xa_rQC8" 
             title="YouTube video player" 
-            frameborder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
             allowfullscreen>
           </iframe>
