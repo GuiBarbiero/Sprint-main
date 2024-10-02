@@ -18,7 +18,7 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-gray-700 to-gray-200 flex items-center justify-center h-screen">
+    <div className="bg-gradient-to-b from-black via-[#1a0000] to-[#4a0000] flex items-center justify-center h-screen">
       <main className="relative w-full max-w-5xl">
         {/* Fundo com transição suave */}
         <div
