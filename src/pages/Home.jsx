@@ -79,7 +79,7 @@ export default function Home() {
         <div className="icon bg-black rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mb-4 sm:mb-5 mx-auto">
           <span className="text-red-600 text-xl sm:text-2xl">R</span>
         </div>
-        <h2 className="text-lg sm:text-xl font-poppins mb-2">Double</h2>
+        <h2 className="text-lg sm:text-xl font-light font-poppins mb-2">Double</h2>
         <p className="font-poppins text-xs sm:text-sm">O Double oferece pontos ao escolher a cor certa: Preto e Vermelho pagam 2x, enquanto Branco paga 5x. A roleta gira, escolha sua cor e boa sorte!</p>
       </div>
       <div className="flex flex-col items-center mt-4">
@@ -94,7 +94,7 @@ export default function Home() {
         <div className="icon bg-black rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mb-4 sm:mb-5 mx-auto">
           <img src="bet logo site.svg" alt="Bet Logo" className="h-8 sm:h-9" />
         </div>
-        <h2 className="text-lg sm:text-xl font-light font-poppins mb-2">Bet</h2>
+        <h2 className="text-lg sm:text-xl font-light font-poppins mb-2">Suposição</h2>
         <p className="text-xs sm:text-sm font-poppins">Escolha o piloto vencedor da próxima corrida de Fórmula E e ganhe pontos para se destacar no ranking!</p>
       </div>
       <div className="flex flex-col items-center mt-4">

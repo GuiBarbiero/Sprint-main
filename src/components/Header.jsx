@@ -26,7 +26,7 @@ export default function Header() {
                 to="/double"
                 className="text-white no-underline text-sm px-4 py-2 font-unbounded hover:text-red-500 transition-all ease-linear"
               >
-                Jogar agora
+                Jogar
               </NavLink>
             </li>
             <li className="mb-2 md:mb-0 md:ml-5">

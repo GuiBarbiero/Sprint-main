@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import ArrowChatButton from '../components/ArrowChatButton';
 
 // Importando as imagens
-import camisetaLoja from '../assets/Camiseta Loja C.png';
+import camisetaLoja from '../assets/Camiseta1.png';
 import ingressoLoja from '../assets/Ingresso Loja C.png';
-import boneLoja from '../assets/Bone Loja C.png';
+import boneLoja from '../assets/Bone.png';
 import ps5Loja from '../assets/Ps5 Loja C.png';
 import caderno01 from '../assets/caderno01.png';
 import moedaIcon from '../assets/moeda-loja.png';
@@ -84,14 +84,13 @@ export default function Home() {
         {produtos.map((produto) => (
           <div
             key={produto.id}
-            className="bg-neutral-900 border border-neutral-700 rounded-lg p-6 text-center shadow-lg flex flex-col justify-between"
+            className="bg-neutral-900 border border-red-600 hover:border-red-700 rounded-lg p-6 text-center shadow-lg flex flex-col justify-between transition"
           >
             {produto.img ? (
               <img
                 src={produto.img}
                 alt={produto.nome}
-                className="w-full h-auto mb-4 rounded-md"
-                
+                className="w-full h-40 object-contain mb-4 rounded-md"
               />
             ) : (
               <div className="w-full h-40 bg-gray-600 mb-4 rounded-md"></div>
@@ -102,16 +101,13 @@ export default function Home() {
             </div>
             <button
               onClick={() => adquirirItem(produto.preco)}
-              className="bg-neutral-700 text-white py-2 px-4 rounded-full hover:bg-red-600 transition mt-auto"
+              className="bg-red-500 text-white py-2 px-4 rounded-full hover:bg-red-600 transition mt-auto"
             >
               ADQUIRIR
             </button>
           </div>
-          
         ))}
       </div>
     </div>
-    
   );
-  
 }
