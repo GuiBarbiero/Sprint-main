@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import FAQ from '../components/Faq';
 import Modal from '../components/Modal'; // Importando o componente Modal
+import ArrowChatButton from '../components/ArrowChatButton';
 
 export default function Home() {
   // Estado para controlar a exibição do modal
@@ -43,7 +44,7 @@ export default function Home() {
         <img src="carro site.png" alt="Carro de Corrida" className="w-full max-w-3xl sm:max-w-2xl" />
         <a href="#" className="button bg-red-600 text-white py-3 px-6 rounded-full text-sm font-light inline-flex items-center mt-6">
           COMEÇAR AGORA
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" className="ml-2">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40" fill="currentColor" className="ml-2">
             <path d="M0 0h24v24H0z" fill="none" />
             <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
           </svg>
@@ -53,46 +54,56 @@ export default function Home() {
 
       {/* Jogos Section */}
       <section className="jogos text-center py-5" id="jogos">
-        <div className="title-container1 flex items-center justify-center mb-5 px-4 sm:px-6 lg:px-36">
-          <h1 className="font-unbounded text-2xl sm:text-3xl font-light">Jogos</h1>
+  <div className="title-container1 flex items-center justify-center mb-5 px-4 sm:px-6 lg:px-36">
+    <h1 className="font-unbounded text-2xl sm:text-3xl font-light">Jogos</h1>
+  </div>
+  <div className="font-poppins cards-container flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 px-4">
+    
+    {/* Card Quiz */}
+    <div className="card bg-customGray rounded-lg p-4 sm:p-5 text-left flex flex-col justify-between max-w-xs sm:max-w-sm min-h-[300px]">
+      <div className="flex-grow">
+        <div className="icon bg-black rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mb-4 sm:mb-5 mx-auto">
+          <img src="quiz logo site.svg" alt="Quiz Logo" className="h-8 sm:h-9" />
         </div>
-        <div className="font-poppins cards-container flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 px-4">
-          
-          {/* Card Quiz */}
-          <div className="card bg-customGray rounded-lg p-4 sm:p-5 text-left flex flex-col justify-between max-w-xs sm:max-w-sm">
-            <div className="icon bg-black rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mb-4 sm:mb-5">
-              <img src="quiz logo site.svg" alt="Quiz Logo" className="h-8 sm:h-9" />
-            </div>
-            <h2 className="text-lg sm:text-xl font-light font-unbounded mb-2">Quiz</h2>
-            <p className="text-xs sm:text-sm font-poppins">Desafie seus conhecimentos sobre Fórmula 1 neste quiz emocionante! Responda perguntas rápidas e acumule pontos para se tornar um verdadeiro especialista.</p>
-            <a href="#" className="learn-more text-red-600 mt-3 text-xs sm:text-sm font-unbounded">Saiba mais!</a>
-          </div>
-          
-          {/* Card Double */}
-          <div className="card bg-customGray rounded-lg p-4 sm:p-5 text-left flex flex-col justify-between max-w-xs sm:max-w-sm">
-            <div className="icon bg-black rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mb-4 sm:mb-5">
-              <span className="text-red-600 text-xl sm:text-2xl">R</span>
-            </div>
-            <h2 className="text-lg sm:text-xl font-unbounded mb-2">Double</h2>
-            <p className="font-poppins text-xs sm:text-sm">O Double oferece pontos ao escolher a cor certa: Preto e Vermelho pagam 2x, enquanto Branco paga 5x. A roleta gira, escolha sua cor e boa sorte!</p>
-            <button onClick={openModal} className="learn-more text-red-600 mt-3 text-xs sm:text-sm font-unbounded">
-              Saiba mais!
-            </button>
-            <NavLink to="/Double" className="text-red-600 mt-3 text-xs sm:text-sm font-unbounded text-center ">Jogar Double</NavLink>
-          </div>
-
-          {/* Card Bet */}
-          <div className="card bg-customGray rounded-lg p-4 sm:p-5 text-left flex flex-col justify-between max-w-xs sm:max-w-sm">
-            <div className="icon bg-black rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mb-4 sm:mb-5">
-              <img src="bet logo site.svg" alt="Bet Logo" className="h-8 sm:h-9" />
-            </div>
-            <h2 className="text-lg sm:text-xl font-light font-unbounded mb-2">Bet</h2>
-            <p className="text-xs sm:text-sm font-poppins">Escolha o piloto vencedor da próxima corrida de Fórmula E e ganhe pontos para se destacar no ranking!</p>
-            <a href="#" className="learn-more text-red-600 mt-3 text-xs sm:text-sm font-unbounded">Saiba mais!</a>
-          </div>
-
+        <h2 className="text-lg sm:text-xl font-light font-poppins mb-2">Quiz</h2>
+        <p className="text-xs sm:text-sm font-poppins">Desafie seus conhecimentos sobre Fórmula 1 neste quiz emocionante! Responda perguntas rápidas e acumule pontos para se tornar um verdadeiro especialista.</p>
+      </div>
+      <div className="flex flex-col items-center mt-4">
+        <a href="#" className="learn-more text-red-600 text-xs sm:text-sm font-poppins">Saiba mais!</a>
+      </div>
+    </div>
+    
+    {/* Card Double */}
+    <div className="card bg-customGray rounded-lg p-4 sm:p-5 text-left flex flex-col justify-between max-w-xs sm:max-w-sm min-h-[300px]">
+      <div className="flex-grow">
+        <div className="icon bg-black rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mb-4 sm:mb-5 mx-auto">
+          <span className="text-red-600 text-xl sm:text-2xl">R</span>
         </div>
-      </section>
+        <h2 className="text-lg sm:text-xl font-poppins mb-2">Double</h2>
+        <p className="font-poppins text-xs sm:text-sm">O Double oferece pontos ao escolher a cor certa: Preto e Vermelho pagam 2x, enquanto Branco paga 5x. A roleta gira, escolha sua cor e boa sorte!</p>
+      </div>
+      <div className="flex flex-col items-center mt-4">
+        <button onClick={openModal} className="learn-more text-red-600 text-xs sm:text-sm font-poppins">Saiba mais!</button>
+        <NavLink to="/Double" className="text-red-600 mt-2 text-xs sm:text-sm font-poppins text-center">Jogar Double</NavLink>
+      </div>
+    </div>
+
+    {/* Card Bet */}
+    <div className="card bg-customGray rounded-lg p-4 sm:p-5 text-left flex flex-col justify-between max-w-xs sm:max-w-sm min-h-[300px]">
+      <div className="flex-grow">
+        <div className="icon bg-black rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mb-4 sm:mb-5 mx-auto">
+          <img src="bet logo site.svg" alt="Bet Logo" className="h-8 sm:h-9" />
+        </div>
+        <h2 className="text-lg sm:text-xl font-light font-poppins mb-2">Bet</h2>
+        <p className="text-xs sm:text-sm font-poppins">Escolha o piloto vencedor da próxima corrida de Fórmula E e ganhe pontos para se destacar no ranking!</p>
+      </div>
+      <div className="flex flex-col items-center mt-4">
+        <a href="#" className="learn-more text-red-600 text-xs sm:text-sm font-poppins">Saiba mais!</a>
+      </div>
+    </div>
+
+  </div>
+</section>
 
       {/* Section para Player de Vídeo */}
       <section className="video-section text-center py-5" id="live-stream">
@@ -161,7 +172,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+      <ArrowChatButton />
       <FAQ />
       <Modal show={showModal} handleClose={closeModal} />
     </main>

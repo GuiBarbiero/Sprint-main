@@ -10,15 +10,15 @@ const FAQ = () => {
   return (
     <div className="font-montserrat"> {/* Aplicando a fonte a todo o componente */}
       <div className="flex flex-col items-center text-white text-center mb-8">
-        <p className="bg-neutral-900 py-2 px-4 text-lg font-semibold text-red-600 rounded-lg w-1/3">
+        <p className="bg-neutral-900 py-2 px-4 text-lg font-semibold text-red-600 rounded-lg w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
           PERGUNTAS FREQUENTES
         </p>
-        <h4 className="text-4xl font-medium mt-2 w-1/3">
+        <h4 className="text-3xl sm:text-4xl font-medium mt-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
           Tem dúvidas? Temos respostas!
         </h4>
       </div>
 
-      <ul className="mx-auto w-1/2 space-y-6">
+      <ul className="mx-auto w-full sm:w-3/4 md:w-1/2 space-y-6 mb-10"> {/* Garantindo que o FAQ ocupe largura adequada e espaçamento */}
         <li className="bg-neutral-900 p-4 rounded-lg">
           <input type="radio" name="objetivo" id="primeiro" className="hidden" />
           <label
@@ -35,7 +35,7 @@ const FAQ = () => {
               ➤
             </span>
           </label>
-          <div className={`text-white mt-2 ${selected === 1 ? '' : 'hidden'}`}>
+          <div className={`text-white mt-2 ${selected === 1 ? 'block' : 'hidden'} transition-all duration-300 ease-in-out`}>
             <p>
               TURBO é uma plataforma que reúne diversos tipos de jogos, no qual
               ao jogar você acumula pontos e com os pontos pode adquirir produtos
@@ -61,7 +61,7 @@ const FAQ = () => {
               ➤
             </span>
           </label>
-          <div className={`text-white mt-2 ${selected === 2 ? '' : 'hidden'}`}>
+          <div className={`text-white mt-2 ${selected === 2 ? 'block' : 'hidden'} transition-all duration-300 ease-in-out`}>
             <p>
               Nós criamos a TURBO para suprir uma demanda do mercado: popularizar
               a Fórmula E. A partir dessa missão, resolvemos criar uma plataforma
@@ -87,7 +87,7 @@ const FAQ = () => {
               ➤
             </span>
           </label>
-          <div className={`text-white mt-2 ${selected === 3 ? '' : 'hidden'}`}>
+          <div className={`text-white mt-2 ${selected === 3 ? 'block' : 'hidden'} transition-all duration-300 ease-in-out`}>
             <p>
               O TURBO é importante pois incentiva a afeição pela Fórmula E, desta
               forma cria-se um interesse maior por carros elétricos que contribuem
@@ -112,7 +112,7 @@ const FAQ = () => {
               ➤
             </span>
           </label>
-          <div className={`text-white mt-2 ${selected === 4 ? '' : 'hidden'}`}>
+          <div className={`text-white mt-2 ${selected === 4 ? 'block' : 'hidden'} transition-all duration-300 ease-in-out`}>
             <p>
               Para adquirir pontos basta escolher uma das opções: jogar o modo
               Quiz, indicar amigos, ou coletar as recompensas diárias. Além

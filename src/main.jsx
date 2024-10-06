@@ -8,6 +8,7 @@ import Loja from './pages/Loja';
 import FAQ from './components/Faq';
 import Double from './pages/Double';
 import Login from './pages/Login';
+import CarCustomization from './pages/CarCustomization';
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,8 @@ const router = createBrowserRouter([
       { path: 'loja', element: <Loja /> }, // Rota da loja
       { path: 'faq', element: <FAQ /> },  // Rota FAQ
       { path: 'login', element: <Login /> }, // Página Login - Correção aqui
-      { path: 'double', element: <Double /> }, // Nova rota para a roleta
+      { path: 'double', element: <Double /> },
+      { path: 'car', element: <CarCustomization /> }, // Nova rota para a roleta
     ],
   },
 ]);

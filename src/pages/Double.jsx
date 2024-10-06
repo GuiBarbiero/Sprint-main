@@ -1,19 +1,26 @@
 import React, { useState, useRef } from 'react';
 import './Double.css';
+import ArrowChatButton from '../components/ArrowChatButton';
+import moedaIcon from '../assets/moeda-loja.png';
 
 const DoubleHorizontal = () => {
   const [escolhaJogador, setEscolhaJogador] = useState(null);
   const [girando, setGirando] = useState(false);
   const [mensagemResultado, setMensagemResultado] = useState('');
+  const [pontosApostados, setPontosApostados] = useState('');
+  const [saldo, setSaldo] = useState(1000); // Saldo inicial do jogador
 
   // Cores disponíveis (Preto, Vermelho, Branco)
-  const cores = ['Vermelho', 'Preto', 'Branco'];
-  
+  const cores = ['vermelho', 'preto', 'branco'];
+
   // Ref para o container que vai se mover
   const animacaoRef = useRef(null);
 
   // Repetir as cores várias vezes para simular uma roleta contínua
-  const quadrados = ['Vermelho', 'Preto', 'Branco','Vermelho', 'Preto', 'Branco','Vermelho', 'Preto', 'Branco','Vermelho', 'Preto', 'Branco','Vermelho', 'Preto', 'Branco','Vermelho', 'Preto', 'Branco','Vermelho', 'Preto', 'Branco']; // Repetir várias vezes
+  const quadrados = [
+    'vermelho', 'preto', 'branco', 'vermelho', 'preto', 'branco', 'vermelho', 'preto', 'branco',
+    'vermelho', 'preto', 'branco', 'vermelho', 'preto', 'branco', 'vermelho', 'preto', 'branco',
+  ]; // Repetir várias vezes
 
   // Função para resetar a roleta
   const resetarRoleta = () => {
@@ -22,7 +29,7 @@ const DoubleHorizontal = () => {
   };
 
   const iniciarRodada = () => {
-    if (!girando && escolhaJogador !== null) {
+    if (!girando && escolhaJogador !== null && pontosApostados > 0) {
       setGirando(true);
       setMensagemResultado('');
 
@@ -45,13 +52,18 @@ const DoubleHorizontal = () => {
         // Parar a roleta após o tempo da animação (5 segundos)
         setTimeout(() => {
           const corFinal = cores[resultadoFinal];
+          let resultadoTexto = '';
 
           if (corFinal === escolhaJogador) {
-            setMensagemResultado('Você ganhou!');
+            const pontosGanhos = pontosApostados * (corFinal === 'branco' ? 5 : 2); // Branco paga 5x, outras cores 2x
+            setSaldo((prevSaldo) => prevSaldo + pontosGanhos);
+            resultadoTexto = `Você ganhou! +${pontosGanhos} pontos.`;
           } else {
-            setMensagemResultado('Você perdeu!');
+            setSaldo((prevSaldo) => prevSaldo - pontosApostados);
+            resultadoTexto = `Você perdeu ${pontosApostados} pontos.`;
           }
 
+          setMensagemResultado(resultadoTexto);
           setGirando(false);
         }, 5000); // Duração do giro de 5 segundos
       }, 100); // Pequeno atraso de 100ms para garantir que o reset seja visível
@@ -59,54 +71,74 @@ const DoubleHorizontal = () => {
   };
 
   return (
-    <div className="double-horizontal-container">
+    <div className="double-horizontal-game-container">
       <h1>Double - Escolha sua Cor!</h1>
 
-      <div className="escolha-jogador">
+      <div className="double-game-flex justify-end items-center mb-4">
+        <div className="double-game-saldo bg-[#202020] border border-gray-600 rounded-full text-center px-4 py-2 flex items-center">
+          <img src={moedaIcon} className="w-8 h-8 mr-2" alt="Turbo Coins" />
+          <p className="text-white font-semibold">TC {saldo}</p>
+        </div>
+      </div>
+
+      <div className="double-escolha-jogador">
         <button
-          className={`botao-escolha ${escolhaJogador === 'Vermelho' ? 'selecionado' : ''}`}
-          onClick={() => setEscolhaJogador('Vermelho')}
+          className={`double-botao-escolha ${escolhaJogador === 'vermelho' ? 'double-selecionado' : ''}`}
+          onClick={() => setEscolhaJogador('vermelho')}
           disabled={girando}
         >
           Vermelho
         </button>
         <button
-          className={`botao-escolha ${escolhaJogador === 'Preto' ? 'selecionado' : ''}`}
-          onClick={() => setEscolhaJogador('Preto')}
+          className={`double-botao-escolha ${escolhaJogador === 'preto' ? 'double-selecionado' : ''}`}
+          onClick={() => setEscolhaJogador('preto')}
           disabled={girando}
         >
           Preto
         </button>
         <button
-          className={`botao-escolha ${escolhaJogador === 'Branco' ? 'selecionado' : ''}`}
-          onClick={() => setEscolhaJogador('Branco')}
+          className={`double-botao-escolha ${escolhaJogador === 'branco' ? 'double-selecionado' : ''}`}
+          onClick={() => setEscolhaJogador('branco')}
           disabled={girando}
         >
           Branco
         </button>
       </div>
 
+      <div className="double-apostar">
+        <label htmlFor="pontos-apostados">Quantos pontos você quer apostar?</label>
+        <input
+          type="number"
+          id="pontos-apostados"
+          value={pontosApostados}
+          onChange={(e) => setPontosApostados(e.target.value)}
+          min="1"
+          max={saldo}
+          disabled={girando}
+        />
+      </div>
+
       <button
         onClick={iniciarRodada}
-        disabled={girando || escolhaJogador === null}
-        className="botao-girar"
+        disabled={girando || escolhaJogador === null || pontosApostados <= 0 || pontosApostados > saldo}
+        className="double-botao-girar"
       >
         Começar o jogo
       </button>
 
-      <div className="quadrados-cores">
-        <div className="container-animacao" ref={animacaoRef}>
+      <div className="double-quadrados-cores">
+        <div className="double-container-animacao" ref={animacaoRef}>
           {quadrados.map((cor, index) => (
-            <div key={index} className={`quadrado ${cor.toLowerCase()}`}>
+            <div key={index} className={`double-quadrado double-${cor}`}>
               {cor}
             </div>
           ))}
         </div>
 
         {/* Linha central fixa para indicar o quadrado no centro */}
-        <div className="linha-central"></div>
+        <div className="double-linha-central"></div>
       </div>
-
+      <ArrowChatButton />
       <h2>{mensagemResultado}</h2>
     </div>
   );

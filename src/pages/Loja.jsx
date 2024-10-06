@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ArrowChatButton from '../components/ArrowChatButton';
 
 // Importando as imagens
 import camisetaLoja from '../assets/Camiseta Loja C.png';
@@ -57,7 +58,7 @@ export default function Home() {
           i
         </button>
       </div>
-
+      <ArrowChatButton />
       {/* Modal estilo popup */}
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
@@ -90,6 +91,7 @@ export default function Home() {
                 src={produto.img}
                 alt={produto.nome}
                 className="w-full h-auto mb-4 rounded-md"
+                
               />
             ) : (
               <div className="w-full h-40 bg-gray-600 mb-4 rounded-md"></div>
@@ -105,8 +107,11 @@ export default function Home() {
               ADQUIRIR
             </button>
           </div>
+          
         ))}
       </div>
     </div>
+    
   );
+  
 }
