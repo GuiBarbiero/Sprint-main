@@ -1,6 +1,32 @@
+import React, { useRef } from "react";
 import { NavLink } from "react-router-dom";
+import emailjs from "emailjs-com";
 
 const Footer = () => {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_kwg4jgj", // Seu Service ID
+        "template_p0w6ftp", // Seu Template ID
+        form.current,
+        "8nnJgfnXmTNMbbtRn"   // Sua Public Key (equivalente ao User ID)
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          alert("Obrigado por se inscrever! Fique de olho no seu e-mail.");
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+    e.target.reset(); // Limpa o formulário após o envio
+  };
+
   return (
     <footer className="bg-[#111111] py-4 text-gray-300 font-Unbounded">
       <div className="container mx-auto px-4">
@@ -9,23 +35,23 @@ const Footer = () => {
           {/* Seção de Contato */}
           <div className="contact-form">
             <h3 className="text-white text-sm font-semibold mb-2">Entre em Contato</h3>
-            <form id="contactForm" className="flex flex-col space-y-2">
+            <form id="contactForm" ref={form} onSubmit={sendEmail} className="flex flex-col space-y-2">
               <input
                 type="text"
-                id="name"
+                name="user_name" // Nome que será enviado ao EmailJS
                 placeholder="Nome"
                 required
                 className="bg-gray-800 border border-gray-600 rounded text-white p-1 text-xs"
               />
               <input
                 type="text"
-                id="phone"
+                name="user_phone" // Telefone que será enviado ao EmailJS
                 placeholder="Telefone"
                 required
                 className="bg-gray-800 border border-gray-600 rounded text-white p-1 text-xs"
               />
               <textarea
-                id="message"
+                name="user_message" // Mensagem que será enviada ao EmailJS
                 placeholder="Mensagem"
                 required
                 className="bg-gray-800 border border-gray-600 rounded text-white p-1 text-xs"
@@ -92,11 +118,13 @@ const Footer = () => {
                 <img src="instagram.svg" alt="Instagram" className="w-5 h-5" />
               </a>
             </div>
-            <form id="newsletter" className="flex items-center">
+            <form id="newsletter" className="flex items-center" ref={form} onSubmit={sendEmail}>
               <input
                 type="email"
+                name="user_email" // Email que será enviado ao EmailJS
                 placeholder="Seu e-mail"
                 className="bg-gray-800 border border-gray-600 rounded text-white p-1 text-xs w-full"
+                required
               />
               <button
                 type="submit"
