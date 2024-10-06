@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import  { useState, useRef } from 'react';
 import './Double.css';
 import ArrowChatButton from '../components/ArrowChatButton';
 import moedaIcon from '../assets/moeda-loja.png';

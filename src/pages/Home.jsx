@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'; 
+import  { useState, useEffect } from 'react'; 
 import { NavLink } from 'react-router-dom';
 import FAQ from '../components/Faq';
 import Modal from '../components/Modal'; // Importando o componente Modal

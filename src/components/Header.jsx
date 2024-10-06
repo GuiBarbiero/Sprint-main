@@ -53,6 +53,14 @@ export default function Header() {
                 Login
               </NavLink>
             </li>
+            <li className="md:ml-5">
+              <NavLink
+                to="/ranking"
+                className="text-white no-underline text-sm px-4 py-2 font-unbounded hover:text-red-500 transition-all ease-linear"
+              >
+                Ranking
+              </NavLink>
+            </li>
           </ul>
         </nav>
       </div>

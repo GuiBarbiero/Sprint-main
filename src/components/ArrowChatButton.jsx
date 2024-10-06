@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const ArrowChatButton = () => {
   const [isOpen, setIsOpen] = useState(false); // Estado para abrir/fechar o chat

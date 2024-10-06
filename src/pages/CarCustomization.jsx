@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ArrowChatButton from '../components/ArrowChatButton';
 
 const CarCustomization = () => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ArrowChatButton from '../components/ArrowChatButton';
 
 // Importando as imagens
@@ -16,6 +16,18 @@ import '../barra-de-navegacao.css';
 export default function Home() {
   const [saldo, setSaldo] = useState(1000);
   const [isModalOpen, setIsModalOpen] = useState(false); // Controle do modal
+  const [codigo, setCodigo] = useState(''); // Estado do código promocional
+  const [codigoAplicado, setCodigoAplicado] = useState(false); // Controle do código aplicado
+
+  const aplicarCodigoPromocional = () => {
+    if (codigo.toUpperCase() === 'MAHINDRA') { // Verifica se o código está correto
+      setSaldo(saldo + 100); // Adiciona 100 Turbo Coins ao saldo
+      setCodigoAplicado(true); // Marca o código como aplicado
+      alert('Código aplicado com sucesso! Você ganhou 100 Turbo Coins e os preços foram reduzidos em 5%!');
+    } else {
+      alert('Código inválido!');
+    }
+  };
 
   const produtos = [
     { id: 1, nome: 'Camiseta', preco: 1000, img: camisetaLoja },
@@ -26,7 +38,12 @@ export default function Home() {
     { id: 6, nome: 'Garrafa Térmica', preco: 750, img: garrafaLoja },
     { id: 7, nome: 'Chaveiro', preco: 150, img: chaveiroLoja },
     { id: 8, nome: 'Caderno', preco: 250, img: caderno01 },
-  ];
+  ].map(produto => {
+    if (codigoAplicado) {
+      return { ...produto, preco: produto.preco * 0.95 }; // Aplica o desconto de 5%
+    }
+    return produto;
+  });
 
   const adquirirItem = (preco) => {
     if (saldo >= preco) {
@@ -44,28 +61,45 @@ export default function Home() {
   return (
     <div className="max-w-screen-xl mx-auto p-4">
       {/* Alinhando corretamente o saldo */}
-      <div className="flex justify-end items-center mb-4">
+      <div className="flex flex-wrap justify-end items-center mb-4 space-x-2 sm:space-x-4">
         <div className="bg-[#202020] border border-gray-600 rounded-full text-center px-4 py-2 flex items-center">
           <img src={moedaIcon} className="w-8 h-8 mr-2" alt="Turbo Coins" />
           <p className="text-white font-semibold">TC {saldo}</p>
         </div>
 
+        {/* Campo para inserir o código promocional */}
+        <input
+          type="text"
+          placeholder="Código promocional"
+          value={codigo}
+          onChange={(e) => setCodigo(e.target.value)}
+          className="bg-[#202020] border border-gray-600 text-white p-2 rounded-full w-28 sm:w-40 flex-shrink-0"
+        />
+        
+        <button
+          onClick={aplicarCodigoPromocional}
+          className="bg-[#202020] border border-gray-600 text-white p-2 rounded-full w-20 sm:w-24 flex-shrink-0 hover:bg-neutral-600 transition"
+          disabled={codigoAplicado} // Desativa o botão se o código já foi aplicado
+        >
+          Aplicar
+        </button>
+
         {/* Botão de informação */}
         <button
           onClick={toggleModal}
-          className="ml-2 bg-[#202020] border border-gray-600 text-white p-2 rounded-full flex items-center justify-center w-10 h-10 hover:bg-neutral-600 transition"
+          className="bg-[#202020] border border-gray-600 text-white p-2 rounded-full w-10 flex-shrink-0 hover:bg-neutral-600 transition"
         >
           i
         </button>
       </div>
-      <ArrowChatButton />
+
       {/* Modal estilo popup */}
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white rounded-lg p-8 shadow-lg max-w-md w-full mx-4">
-            <h2 className="text-xl font-bold mb-4 text-center text-black">TC = Turbo Coins</h2> {/* Ajuste da cor aqui */}
+            <h2 className="text-xl font-bold mb-4 text-center text-black">TC significa Turbo Coins</h2> {/* Ajuste da cor aqui */}
             <p className="text-gray-700 mb-6 text-center">
-              O TC é a moeda virtual do site, permitindo que usuários acumulem e troquem por produtos da loja virtual, como camisetas, bonés e até eletrônicos de alto valor.
+              A TC é a moeda virtual do site, permitindo que usuários acumulem e troquem por produtos da loja virtual, como camisetas, bonés e até eletrônicos de alto valor.
             </p>
             <div className="text-center">
               <button
@@ -79,6 +113,7 @@ export default function Home() {
         </div>
       )}
 
+      <ArrowChatButton />
       {/* Grid de produtos */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
         {produtos.map((produto) => (
@@ -97,7 +132,7 @@ export default function Home() {
             )}
             <div className="flex-grow">
               <h3 className="text-white font-bold text-lg mb-2">{produto.nome}</h3>
-              <p className="text-gray-400 text-sm mb-4">TC {produto.preco}</p>
+              <p className="text-gray-400 text-sm mb-4">TC {produto.preco.toFixed(2)}</p>
             </div>
             <button
               onClick={() => adquirirItem(produto.preco)}

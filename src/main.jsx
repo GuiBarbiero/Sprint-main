@@ -9,6 +9,7 @@ import FAQ from './components/Faq';
 import Double from './pages/Double';
 import Login from './pages/Login';
 import CarCustomization from './pages/CarCustomization';
+import Ranking from './pages/Ranking';
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,8 @@ const router = createBrowserRouter([
       { path: 'faq', element: <FAQ /> },  // Rota FAQ
       { path: 'login', element: <Login /> }, // Página Login - Correção aqui
       { path: 'double', element: <Double /> },
-      { path: 'car', element: <CarCustomization /> }, // Nova rota para a roleta
+      { path: 'car', element: <CarCustomization /> }, // Nova rota para a customizar carro
+      { path: 'ranking', element: <Ranking /> },
     ],
   },
 ]);
