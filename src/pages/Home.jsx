@@ -70,6 +70,7 @@ export default function Home() {
       </div>
       <div className="flex flex-col items-center mt-4">
         <a href="#" className="learn-more text-red-600 text-xs sm:text-sm font-poppins">Saiba mais!</a>
+        <NavLink to="/Quiz" className="text-red-600 mt-2 text-xs sm:text-sm font-poppins text-center">Jogar Quiz</NavLink>
       </div>
     </div>
     
@@ -83,7 +84,7 @@ export default function Home() {
         <p className="font-poppins text-xs sm:text-sm">O Double oferece pontos ao escolher a cor certa: Preto e Vermelho pagam 2x, enquanto Branco paga 5x. A roleta gira, escolha sua cor e boa sorte!</p>
       </div>
       <div className="flex flex-col items-center mt-4">
-        <button onClick={openModal} className="learn-more text-red-600 text-xs sm:text-sm font-poppins">Saiba mais!</button>
+        <button className="learn-more text-red-600 text-xs sm:text-sm font-poppins">Saiba mais!</button>
         <NavLink to="/Double" className="text-red-600 mt-2 text-xs sm:text-sm font-poppins text-center">Jogar Double</NavLink>
       </div>
     </div>
